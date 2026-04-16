@@ -7,14 +7,13 @@ public class Checkpoint : MonoBehaviour
 
     private bool isActivated;
 
-    public void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (isActivated || !other.CompareTag(playerTag) || resetTrigger == null)
         {
             return;
         }
 
-       
         PlayerController player = other.GetComponent<PlayerController>();
         if (player != null)
         {

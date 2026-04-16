@@ -2976,7 +2976,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4332,6 +4332,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 651e9b8ed86fb0946ac29c2843c8d944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  healthBar: {fileID: 0}
+  healthText: {fileID: 0}
+  health: 100
+  maxHealth: 100
+  maxLives: 3
+  lives: 3
+  audioSource: {fileID: 0}
+  healthPickupSound: {fileID: 0}
+  damageSound: {fileID: 0}
+  deathSound: {fileID: 0}
+  gemSound: {fileID: 0}
+  startPoint: {fileID: 0}
+  resetTrigger: {fileID: 0}
   speed: 3
   jumpSpeed: 8
   rotationSpeed: 10

@@ -28,19 +28,30 @@ public class PlayerController : MonoBehaviour
 
     [Header("Movement")]
     [SerializeField] private float speed = 5f;
-    [SerializeField] private float jumpSpeed = 8f;
+    [SerializeField] public float jumpSpeed = 8f;
     [SerializeField] private float rotationSpeed = 10f;
     [SerializeField] private Transform cameraTransform;
+    [SerializeField] private float runSpeed = 8f;
 
-    private PlayerInputController playerInputController;
+    public PlayerInputController playerInputController;
     private GroundController groundController;
     private Rigidbody rb;
-    private bool jumpTriggered;
+    
     private bool isDying;
+    public StateMachine stateMachine;
+    public Animator anim;
+
+    public bool isGrounded;
+    public bool jumpQueued;
+
+    public bool jumpTriggered;
+    public Animator animator;
 
     private MyStack<CheckpointData> checkpointStack = new MyStack<CheckpointData>();
+
     private void Awake()
     {
+        stateMachine = new StateMachine();
         playerInputController = GetComponent<PlayerInputController>();
         groundController = GetComponent<GroundController>();
         rb = GetComponent<Rigidbody>();
@@ -54,10 +65,17 @@ public class PlayerController : MonoBehaviour
         {
             playerInputController.OnJumpedBttonPressed += JumpButtonPressed;
         }
+        stateMachine = new StateMachine();
+        anim = GetComponentInChildren<Animator>();
     }
 
     private void Start()
     {
+        if (stateMachine != null)
+        {
+            stateMachine.ChangeState(new IdleState(this));
+        }
+
         maxHealth = health;
         lives = maxLives;
 
@@ -65,19 +83,32 @@ public class PlayerController : MonoBehaviour
         {
             resetTrigger.SetSpawnPoint(startPoint.position);
         }
+
     }
 
     private void Update()
     {
+        stateMachine.Update();
         if (healthText != null)
         {
             healthText.text = health + " / " + maxHealth;
         }
-
+        if (stateMachine != null)
+        {
+            stateMachine.Update();
+        }
         if (healthBar != null && maxHealth > 0)
         {
             healthBar.value = (float)health / maxHealth;
         }
+        if (groundController != null)
+        {
+            isGrounded = groundController.IsGrounded;
+        }
+
+        animator.SetBool("IsGrounded", groundController.IsGrounded);
+
+        UpdateAnimation();
     }
 
     private void FixedUpdate()
@@ -98,6 +129,7 @@ public class PlayerController : MonoBehaviour
             camRight.y = 0f;
             camForward.Normalize();
             camRight.Normalize();
+
             moveDirection = camForward * input.y + camRight * input.x;
         }
         else
@@ -105,22 +137,51 @@ public class PlayerController : MonoBehaviour
             moveDirection = new Vector3(input.x, 0f, input.y);
         }
 
-        Vector3 velocity = moveDirection * speed;
+        bool isMoving = moveDirection.magnitude > 0.1f;
+        bool canRun = isMoving && Input.GetKey(KeyCode.LeftShift) && groundController.IsGrounded;
+
+        float currentSpeed = canRun ? runSpeed : speed;
+        Vector3 velocity = moveDirection * currentSpeed;
         velocity.y = rb.linearVelocity.y;
 
+  
         if (jumpTriggered)
         {
             velocity.y = jumpSpeed;
             jumpTriggered = false;
         }
-
         rb.linearVelocity = velocity;
 
         if (moveDirection.sqrMagnitude > 0.01f)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+            Quaternion targetRotation = Quaternion.LookRotation(moveDirection.normalized);
             rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime));
         }
+    }
+
+
+    private void UpdateAnimation()
+    {
+        if (animator == null) return;
+        if (playerInputController == null) return;
+        if (rb == null) return;
+
+        Vector2 input = playerInputController.MovementInputVector;
+
+        float speedValue = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z).magnitude;
+
+        animator.SetBool("IsWalking", input.magnitude > 0.1f);
+
+        bool isMoving = input.magnitude > 0.1f;
+
+        animator.SetBool("IsWalking", isMoving && !Input.GetKey(KeyCode.LeftShift));
+
+        animator.SetBool("IsRunning",
+            isMoving &&
+            Input.GetKey(KeyCode.LeftShift) &&
+            groundController.IsGrounded
+        );
+
     }
     public void SaveCheckpoint(Vector3 newPosition)
     {
@@ -139,6 +200,8 @@ public class PlayerController : MonoBehaviour
     {
         if (groundController != null && groundController.IsGrounded)
         {
+            
+            jumpQueued = true;
             jumpTriggered = true;
         }
     }
@@ -285,4 +348,11 @@ public class PlayerController : MonoBehaviour
         health += addHealth;
         health = Mathf.Clamp(health, 0, maxHealth);
     }
+
+    public void ConsumeQueuedJump()
+    {
+        jumpQueued = false;
+        jumpTriggered = true;
+    }
+
 }
