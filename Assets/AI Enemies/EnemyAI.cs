@@ -41,8 +41,7 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         // Safety check (prevents crashes)
-        if (player == null || animator == null)
-            return;
+        if (player == null) return;
 
         float distance = Vector3.Distance(transform.position, player.position);
 
@@ -52,14 +51,21 @@ public class EnemyAI : MonoBehaviour
         }
         else if (distance <= detectionRange)
         {
-            Patrol();
+            Chase();
         }
         else
         {
-            Idle();
+            Patrol();
         }
     }
+    void Chase()
+    {
+        animator.SetBool("isPatrolling", true);
+        animator.SetBool("isAttacking", false);
 
+        agent.isStopped = false;
+        agent.SetDestination(player.position);
+    }
     void Idle()
     {
         animator.SetBool("isPatrolling", false);
