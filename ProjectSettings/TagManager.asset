@@ -8,6 +8,7 @@ TagManager:
   - HealthPickUp
   - Gems
   - Death
+  - GemText
   layers:
   - Default
   - TransparentFX

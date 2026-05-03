@@ -1,48 +1,38 @@
- using UnityEngine;
+﻿ using UnityEngine;
 using UnityEngine.AI;
+using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
+using Unity.VisualScripting;
 
 public class EnemyAI : MonoBehaviour
 {
     public Animator animator;
     public Transform player;
-    NavMeshAgent agent;
+    public Transform[] patrolPoints;
 
-    public float detectionRange = 5f;
+    private NavMeshAgent agent;
+
+    public float detectionRange = 10f;
     public float attackRange = 2f;
 
-    public float patrolRadius = 10f;
-    public float patrolDelay = 3f;
+    private LinkedListADT1 patrolList = new LinkedListADT1();
+    private Node1 currentNode;
 
-    private float patrolTimer;
-    void Start()
+    private void Start()
     {
-        // Get Animator safely
-        animator = GetComponent<Animator>();
-        if (animator == null)
-        {
-            Debug.LogError("Animator missing on " + gameObject.name);
-        }
-
-        // Auto-find player by tag
-        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-
-        if (playerObj != null)
-        {
-            player = playerObj.transform;
-        }
-        else
-        {
-            Debug.LogError("Player not found! Make sure Player tag is set.");
-        }
-
         agent = GetComponent<NavMeshAgent>();
+
+        // Store patrol points in linked list
+        foreach (Transform point in patrolPoints)
+        {
+            patrolList.Add(point);
+        }
+
+        currentNode = patrolList.GetHead();
     }
 
-    void Update()
+    private void Update()
     {
-        // Safety check (prevents crashes)
-        if (player == null) return;
-
         float distance = Vector3.Distance(transform.position, player.position);
 
         if (distance <= attackRange)
@@ -58,52 +48,42 @@ public class EnemyAI : MonoBehaviour
             Patrol();
         }
     }
-    void Chase()
-    {
-        animator.SetBool("isPatrolling", true);
-        animator.SetBool("isAttacking", false);
 
-        agent.isStopped = false;
-        agent.SetDestination(player.position);
-    }
-    void Idle()
+    void Chase()
     {
         animator.SetBool("isPatrolling", false);
         animator.SetBool("isAttacking", false);
 
         agent.isStopped = false;
+        agent.speed = 5f;
+
+        agent.SetDestination(player.position);
     }
 
     void Patrol()
     {
+        if (currentNode == null) return;
+
         animator.SetBool("isPatrolling", true);
         animator.SetBool("isAttacking", false);
 
-        patrolTimer += Time.deltaTime;
+        agent.isStopped = false;
+        agent.speed = 2f;
 
-        if (patrolTimer >= patrolDelay)
+        Transform target = currentNode.data;
+
+        agent.SetDestination(target.position);
+
+        // Better Unity-safe arrival check
+        if (!agent.pathPending && agent.remainingDistance < 0.5f)
         {
-            Vector3 newPos = RandomNavMeshPosition(transform.position, patrolRadius);
-            agent.SetDestination(newPos);
-
-            patrolTimer = 0f;
+            if (currentNode.next != null)
+                currentNode = currentNode.next;
+            else
+                currentNode = patrolList.GetHead();
         }
-        Vector3 RandomNavMeshPosition(Vector3 origin, float radius)
-        {
-            Vector3 randomDirection = Random.insideUnitSphere * radius;
-            randomDirection += origin;
-
-            NavMeshHit hit;
-            if (NavMesh.SamplePosition(randomDirection, out hit, radius, NavMesh.AllAreas))
-            {
-                return hit.position;
-            }
-
-            return origin;
-        }
-        Debug.Log("Patrolling...");
     }
-   
+
     void Attack()
     {
         animator.SetBool("isPatrolling", false);

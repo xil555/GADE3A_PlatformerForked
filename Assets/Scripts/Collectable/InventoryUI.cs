@@ -1,40 +1,44 @@
 using TMPro;
 using UnityEngine;
+using System;
 
 public class InventoryUI : MonoBehaviour
 {
-    private TextMeshProUGUI gemText;
+    [Header("UI References")]
+    [SerializeField] private TextMeshProUGUI coinsText;
+    [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI livesText;
 
     private void Awake()
     {
-        ResolveGemText();
+        CacheUI();
     }
 
-    private void Start()
+    private void CacheUI()
     {
-        ResolveGemText();
+        // Auto-assign if not set in Inspector (safe fallback)
+        if (coinsText == null)
+            coinsText = transform.Find("CoinsText")?.GetComponent<TextMeshProUGUI>();
+
+        if (scoreText == null)
+            scoreText = transform.Find("ScoreText")?.GetComponent<TextMeshProUGUI>();
+
+        if (livesText == null)
+            livesText = transform.Find("LivesText")?.GetComponent<TextMeshProUGUI>();
     }
 
-    private void ResolveGemText()
+    // EVENT-DRIVEN UPDATE (Advanced approach)
+    public void UpdateUI(PlayerStats stats)
     {
-        if (gemText == null)
-        {
-            gemText = GetComponent<TextMeshProUGUI>();
-        }
+        if (stats == null) return;
 
-        if (gemText == null)
-        {
-            gemText = GetComponentInChildren<TextMeshProUGUI>(true);
-        }
-    }
+        if (coinsText != null)
+            coinsText.text = $"Coins: {stats.coins}";
 
-    public void UpdateGemText(PlayerInventory inventory)
-    {
-        ResolveGemText();
+        if (scoreText != null)
+            scoreText.text = $"Score: {stats.score}";
 
-        if (gemText != null && inventory != null)
-        {
-            gemText.text = inventory.noOfCoins.ToString();
-        }
+        if (livesText != null)
+            livesText.text = $"Lives: {stats.lives}";
     }
 }

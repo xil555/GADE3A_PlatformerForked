@@ -1,22 +1,41 @@
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerInventory : MonoBehaviour
 {
+    public static PlayerInventory Instance;
+
     public int noOfCoins = 0;
 
-    [Header("Gem counter (pick one)")]
-    [Tooltip("Drag your TextMeshProUGUI gem number here � same GameObject as Player is fine, or any UI text.")]
     [SerializeField] private TextMeshProUGUI gemCounterText;
 
-    [Tooltip("Optional: only if you use InventoryUI instead of Gem Counter Text above.")]
-    [SerializeField] private InventoryUI gemUI;
+    private void Awake()
+    {
+        // Singleton (prevents reset between scenes)
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
-    private InventoryUI inventoryUI;
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
 
     private void Start()
     {
-        EnsureUI();
         RefreshUI();
     }
 
@@ -29,41 +48,24 @@ public class PlayerInventory : MonoBehaviour
     public void ResetCoins()
     {
         noOfCoins = 0;
-        EnsureUI();
         RefreshUI();
     }
 
-    private void EnsureUI()
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (gemCounterText != null)
-        {
-            return;
-        }
+        // Find ONLY the correct gem UI (top-right)
+        TextMeshProUGUI[] allTexts = FindObjectsOfType<TextMeshProUGUI>();
 
-        if (gemUI != null)
+        foreach (TextMeshProUGUI txt in allTexts)
         {
-            inventoryUI = gemUI;
-            return;
-        }
-
-        if (inventoryUI == null)
-        {
-            inventoryUI = Object.FindAnyObjectByType<InventoryUI>();
-        }
-
-        if (inventoryUI == null)
-        {
-            InventoryUI[] all = Resources.FindObjectsOfTypeAll<InventoryUI>();
-            for (int i = 0; i < all.Length; i++)
+            if (txt.CompareTag("GemText")) // 👈 we’ll use a tag
             {
-                InventoryUI ui = all[i];
-                if (ui != null && ui.gameObject.scene.IsValid())
-                {
-                    inventoryUI = ui;
-                    break;
-                }
+                gemCounterText = txt;
+                break;
             }
         }
+
+        RefreshUI();
     }
 
     private void RefreshUI()
@@ -71,13 +73,6 @@ public class PlayerInventory : MonoBehaviour
         if (gemCounterText != null)
         {
             gemCounterText.text = noOfCoins.ToString();
-            return;
-        }
-
-        EnsureUI();
-        if (inventoryUI != null)
-        {
-            inventoryUI.UpdateGemText(this);
         }
     }
 }
