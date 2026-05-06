@@ -7,7 +7,7 @@ public class Checkpoint : MonoBehaviour
 
     private bool isActivated;
 
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if (isActivated || !other.CompareTag(playerTag) || resetTrigger == null)
         {

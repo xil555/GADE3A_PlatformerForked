@@ -9,6 +9,8 @@ TagManager:
   - Gems
   - Death
   - GemText
+  - Shield
+  - PatrolPoint
   layers:
   - Default
   - TransparentFX

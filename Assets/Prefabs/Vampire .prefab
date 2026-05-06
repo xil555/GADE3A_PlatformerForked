@@ -1,0 +1,216 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &5304877050062930277
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 57241dd4ceb226a4cb5a2fa525f1aa5d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.62523
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 57241dd4ceb226a4cb5a2fa525f1aa5d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.62523
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 57241dd4ceb226a4cb5a2fa525f1aa5d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.62523
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 57241dd4ceb226a4cb5a2fa525f1aa5d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -16.89
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 57241dd4ceb226a4cb5a2fa525f1aa5d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 57241dd4ceb226a4cb5a2fa525f1aa5d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 7.02
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 57241dd4ceb226a4cb5a2fa525f1aa5d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7559807
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 57241dd4ceb226a4cb5a2fa525f1aa5d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 57241dd4ceb226a4cb5a2fa525f1aa5d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.65459394
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 57241dd4ceb226a4cb5a2fa525f1aa5d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 57241dd4ceb226a4cb5a2fa525f1aa5d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 57241dd4ceb226a4cb5a2fa525f1aa5d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -81.778
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 57241dd4ceb226a4cb5a2fa525f1aa5d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 57241dd4ceb226a4cb5a2fa525f1aa5d, type: 3}
+      propertyPath: m_Name
+      value: 'Vampire '
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 57241dd4ceb226a4cb5a2fa525f1aa5d, type: 3}
+      propertyPath: m_TagString
+      value: Damage
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 57241dd4ceb226a4cb5a2fa525f1aa5d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 624528639405548369}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 57241dd4ceb226a4cb5a2fa525f1aa5d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1642837777206587546}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 57241dd4ceb226a4cb5a2fa525f1aa5d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5449951988138059195}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 57241dd4ceb226a4cb5a2fa525f1aa5d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3826691370263395551}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 57241dd4ceb226a4cb5a2fa525f1aa5d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1589984727092492075}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 57241dd4ceb226a4cb5a2fa525f1aa5d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 310729315776939576}
+  m_SourcePrefab: {fileID: 100100000, guid: 57241dd4ceb226a4cb5a2fa525f1aa5d, type: 3}
+--- !u!1 &4998956295853882420 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 57241dd4ceb226a4cb5a2fa525f1aa5d, type: 3}
+  m_PrefabInstance: {fileID: 5304877050062930277}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &624528639405548369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4998956295853882420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bf58027d6229704696bec2fa0cc43c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
+  animator: {fileID: 1642837777206587546}
+  player: {fileID: 5526252092671966782, guid: f8bad52c989b05a4fb62d76dd56a10af, type: 3}
+  patrolPoints: []
+  patrolList: {fileID: 0}
+  detectionRange: 5
+  attackRange: 2
+  waypointReachDistance: 1.25
+--- !u!95 &1642837777206587546
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4998956295853882420}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 57241dd4ceb226a4cb5a2fa525f1aa5d, type: 3}
+  m_Controller: {fileID: 22100000, guid: f2447c61a5f6f334cbcd940d84ea7b29, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5449951988138059195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4998956295853882420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0fd9f050c9c99d44ac04f71ebc554ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAnimationTester
+--- !u!195 &3826691370263395551
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4998956295853882420}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 1
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!65 &1589984727092492075
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4998956295853882420}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 2.6206565, z: 1.6661935}
+  m_Center: {x: 0.0000000042565604, y: 0.8103318, z: 0.35352424}
+--- !u!114 &310729315776939576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4998956295853882420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f44bd54c39845454e8e80af6277f13d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Vampire
+  enemyName: Vampire
+  projectilePrefab: {fileID: 2783270738434535137, guid: aed517fbe32f6dc45a71664f4692c877, type: 3}
+  firePoint: {fileID: 4508831361473552510, guid: eca06ef39a3716449808be0b550bedd7, type: 3}
+  playerTransform: {fileID: 5526252092671966782, guid: f8bad52c989b05a4fb62d76dd56a10af, type: 3}
+  attackCooldown: 1
+  forwardShotForce: 10
+  attackRange: 10
+  playerLayerMask:
+    serializedVersion: 2
+    m_Bits: 0

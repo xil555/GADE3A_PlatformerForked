@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b09e4b15da617dd4a8c8617220a9d6e3, type: 3}
+  m_Name: A_NPCDialogueSO 4
+  m_EditorClassIdentifier: Assembly-CSharp::NPCDialogueSO
+  speaker: 1
+  characterName: Travellar
+  characterIcon: {fileID: 21300000, guid: df8cde9d88372b44ebbc2f30f96344fe, type: 3}
+  messageLines: Gosh do you people ever shut up! I don't even know anything about
+    these so called gems.

@@ -83,7 +83,11 @@ public class PlayerController : MonoBehaviour
         {
             resetTrigger.SetSpawnPoint(startPoint.position);
         }
-       
+        if (startPoint != null)
+        {
+            transform.position = startPoint.position;
+        }
+
     }
 
     private void Update()

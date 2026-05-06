@@ -53,12 +53,11 @@ public class PlayerInventory : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Find ONLY the correct gem UI (top-right)
-        TextMeshProUGUI[] allTexts = FindObjectsOfType<TextMeshProUGUI>();
+        TextMeshProUGUI[] allTexts = Object.FindObjectsByType<TextMeshProUGUI>(FindObjectsSortMode.None);
 
         foreach (TextMeshProUGUI txt in allTexts)
         {
-            if (txt.CompareTag("GemText")) // 👈 we’ll use a tag
+            if (txt.CompareTag("GemText")) 
             {
                 gemCounterText = txt;
                 break;
