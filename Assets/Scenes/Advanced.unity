@@ -4228,13 +4228,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 137478494918256536, guid: f8bad52c989b05a4fb62d76dd56a10af, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 707760064197328490, guid: f8bad52c989b05a4fb62d76dd56a10af, type: 3}
       propertyPath: m_Constraints
       value: 112
       objectReference: {fileID: 0}
     - target: {fileID: 1588193096390629794, guid: f8bad52c989b05a4fb62d76dd56a10af, type: 3}
       propertyPath: m_DefaultControlScheme
-      value: 
+      value: Keyboard&Mouse
       objectReference: {fileID: 0}
     - target: {fileID: 1588193096390629794, guid: f8bad52c989b05a4fb62d76dd56a10af, type: 3}
       propertyPath: m_NotificationBehavior
@@ -4321,6 +4325,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6961747756227225955, guid: f8bad52c989b05a4fb62d76dd56a10af, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.93636
+      objectReference: {fileID: 0}
+    - target: {fileID: 6961747756227225955, guid: f8bad52c989b05a4fb62d76dd56a10af, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.75395703
+      objectReference: {fileID: 0}
+    - target: {fileID: 6961747756227225955, guid: f8bad52c989b05a4fb62d76dd56a10af, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.93636
+      objectReference: {fileID: 0}
+    - target: {fileID: 6961747756227225955, guid: f8bad52c989b05a4fb62d76dd56a10af, type: 3}
       propertyPath: m_LocalPosition.z
       value: -1.72
       objectReference: {fileID: 0}
@@ -4332,7 +4348,8 @@ PrefabInstance:
       propertyPath: shieldTimerText
       value: 
       objectReference: {fileID: 440184359}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 137478494918256536, guid: f8bad52c989b05a4fb62d76dd56a10af, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
