@@ -25407,6 +25407,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 17260362}
     - target: {fileID: 2250400971321893304, guid: 3ed4f7d6f0762db43969110872b73f94, type: 3}
+      propertyPath: detectionRange
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2250400971321893304, guid: 3ed4f7d6f0762db43969110872b73f94, type: 3}
       propertyPath: 'patrolPoints.Array.data[0]'
       value: 
       objectReference: {fileID: 2578011668982690879}
