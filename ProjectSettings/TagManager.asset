@@ -11,11 +11,15 @@ TagManager:
   - GemText
   - Shield
   - PatrolPoint
+  - Wall
+  - MovingPlatform
+  - JumpPad
+  - SlowZone
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Wall
   - Water
   - UI
   - 

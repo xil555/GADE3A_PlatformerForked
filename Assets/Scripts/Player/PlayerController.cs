@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
     public PlayerInputController playerInputController;
     private GroundController groundController;
     private Rigidbody rb;
-    
+
     private bool isDying;
     public StateMachine stateMachine;
     public Animator anim;
@@ -46,6 +46,15 @@ public class PlayerController : MonoBehaviour
 
     public bool jumpTriggered;
     public Animator animator;
+
+    [SerializeField] private float normalWalkSpeed = 5f;
+    [SerializeField] private float normalRunSpeed = 8f;
+
+    [SerializeField] private float slowWalkSpeed = 2f;
+    [SerializeField] private float slowRunSpeed = 4f;
+
+    [SerializeField] private float normalJumpSpeed = 8f;
+    [SerializeField] private float slowZoneJumpSpeed = 4f;
 
     private MyStack<CheckpointData> checkpointStack = new MyStack<CheckpointData>();
 
@@ -87,12 +96,14 @@ public class PlayerController : MonoBehaviour
         {
             transform.position = startPoint.position;
         }
-
+        normalWalkSpeed = speed;
+        normalRunSpeed = runSpeed;
+        normalJumpSpeed = jumpSpeed;
     }
 
     private void Update()
     {
-        stateMachine.Update();
+      
         if (healthText != null)
         {
             healthText.text = health + " / " + maxHealth;
@@ -113,6 +124,7 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("IsGrounded", groundController.IsGrounded);
 
         UpdateAnimation();
+
     }
 
     private void FixedUpdate()
@@ -148,7 +160,7 @@ public class PlayerController : MonoBehaviour
         Vector3 velocity = moveDirection * currentSpeed;
         velocity.y = rb.linearVelocity.y;
 
-  
+
         if (jumpTriggered)
         {
             velocity.y = jumpSpeed;
@@ -187,6 +199,8 @@ public class PlayerController : MonoBehaviour
         );
 
     }
+   
+   
     public void SaveCheckpoint(Vector3 newPosition)
     {
         if (!checkpointStack.IsEmpty())
@@ -204,7 +218,7 @@ public class PlayerController : MonoBehaviour
     {
         if (groundController != null && groundController.IsGrounded)
         {
-            
+
             jumpQueued = true;
             jumpTriggered = true;
         }
@@ -255,8 +269,37 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(RespawnPickup(other.gameObject, 5f));
             }
         }
+        if (other.CompareTag("SlowZone"))
+        {
+            speed = slowWalkSpeed;
+            runSpeed = slowRunSpeed;
+            jumpSpeed = slowZoneJumpSpeed;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("SlowZone"))
+        {
+            speed = normalWalkSpeed;
+            runSpeed = normalRunSpeed;
+            jumpSpeed = slowZoneJumpSpeed;
+        }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("MovingPlatform"))
+        {
+            transform.SetParent(collision.transform);
+        }
     }
 
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("MovingPlatform"))
+        {
+            transform.SetParent(null);
+        }
+    }
     public void TakeDamage(int amount)
     {
         if (isDying)
@@ -359,4 +402,5 @@ public class PlayerController : MonoBehaviour
         jumpTriggered = true;
     }
 
+    
 }
