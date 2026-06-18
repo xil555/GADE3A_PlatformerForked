@@ -8,14 +8,21 @@ public class WalkState : IState
 
     public void Enter()
     {
-        if (player.anim == null) return;
-        player.anim.SetBool("IsWalking", true);
-        player.anim.SetBool("IsRunning", false);
+        if (player.animator == null) return;
+        player.animator.SetBool("IsWalking", true);
+        player.animator.SetBool("IsRunning", false);
     }
 
     public void Update()
     {
         if (player.playerInputController == null) return;
+
+        if (player.jumpQueued)
+        {
+            player.stateMachine.ChangeState(new JumpState(player));
+            return;
+        }
+
         Vector2 input = player.playerInputController.MovementInputVector;
 
         if (input == Vector2.zero)
@@ -29,13 +36,12 @@ public class WalkState : IState
             player.stateMachine.ChangeState(new RunState(player));
             return;
         }
-
-        if (player.isGrounded && player.jumpQueued)
-        {
-            player.stateMachine.ChangeState(new JumpState(player));
-        }
     }
 
-    public void Exit() { }
+    public void Exit()
+    {
+        if (player.animator == null) return;
+        player.animator.SetBool("IsWalking", false);
+        player.animator.SetBool("IsRunning", false);
+    }
 }
-

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: NPCDialogueSO 1
   m_EditorClassIdentifier: Assembly-CSharp::NPCDialogueSO
   speaker: 1
-  characterName: Traveller
-  characterIcon: {fileID: 21300000, guid: 06ee2afb4fae8d943813e0ac07509a2e, type: 3}
-  messageLines: Oh! I didn't even see it there, I'll make sure to use them thank
-    you !
+  characterName: Timmy
+  characterIcon: {fileID: 21300000, guid: 37f5b6a4ae18c1c4c99ae0cfb20d500e, type: 3}
+  messageLines: Mr. Ruffles! Thanks... I was wondering how I was supposed to get
+    across all this.

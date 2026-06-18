@@ -35,14 +35,22 @@ public class Coins : MonoBehaviour
             Coins c = registeredPickups[i];
             if (c != null)
             {
-                c.gameObject.SetActive(true);
+                c.ResetForRespawn();
             }
         }
     }
 
+    private bool collected;
+
+    public void ResetForRespawn()
+    {
+        collected = false;
+        gameObject.SetActive(true);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other == null)
+        if (collected || other == null)
         {
             return;
         }
@@ -50,6 +58,13 @@ public class Coins : MonoBehaviour
         PlayerInventory inventory = ResolvePlayerInventory(other);
         if (inventory != null)
         {
+            collected = true;
+
+            if (SFXManager.Instance != null)
+            {
+                SFXManager.Instance.PlaySound("Gem");
+            }
+
             inventory.CoinCollection();
             gameObject.SetActive(false);
         }

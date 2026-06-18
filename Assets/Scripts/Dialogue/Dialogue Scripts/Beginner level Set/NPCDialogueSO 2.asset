@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: NPCDialogueSO 2
   m_EditorClassIdentifier: Assembly-CSharp::NPCDialogueSO
   speaker: 0
-  characterName: Baker
-  characterIcon: {fileID: 21300000, guid: df8cde9d88372b44ebbc2f30f96344fe, type: 3}
-  messageLines: Yeah we wouldn't wanna have another visiter falling off again now,
-    be on your way.
+  characterName: Mr. Ruffles
+  characterIcon: {fileID: 21300000, guid: e31f14f0c69b33b46a4374969c06dafe, type: 3}
+  messageLines: Keep them close, and don't be afraid to use them. I'll be cheering
+    you on from here!

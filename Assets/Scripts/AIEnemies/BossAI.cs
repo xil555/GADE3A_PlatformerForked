@@ -23,6 +23,10 @@ public class BossAI : MonoBehaviour
     [SerializeField] private float projectileSpeed = 15f;
     [SerializeField] private float attackCooldown = 1.5f;
 
+    [Header("Animation")]
+    [SerializeField] private string walkBoolParam = "IsWalking";
+    [SerializeField] private string attackBoolParam = "isAttacking";
+
     [Header("Collision")]
     [SerializeField] private bool passThroughWalls = true;
     [SerializeField] private string wallTag = "Wall";
@@ -40,6 +44,11 @@ public class BossAI : MonoBehaviour
 
     private void Start()
     {
+        if (animator == null)
+        {
+            animator = GetComponentInChildren<Animator>();
+        }
+
         if (player == null)
         {
             GameObject playerObj = GameObject.FindWithTag("Player");
@@ -135,8 +144,13 @@ public class BossAI : MonoBehaviour
     {
         if (currentNode == null || currentNode.waypoint == null)
         {
+            SetWalkAnimation(false);
+            SetAttackAnimation(false);
             return;
         }
+
+        SetWalkAnimation(true);
+        SetAttackAnimation(false);
 
         agent.isStopped = false;
         agent.speed = patrolSpeed;
@@ -200,7 +214,6 @@ public class BossAI : MonoBehaviour
             }
         }
 
-        // Always keep patrolling: if this node is a dead end, loop to the next node in the graph list.
         if (choices.Count == 0 && patrolGraph.nodes.Count > 1)
         {
             choices.Add((currentNodeIndex + 1) % patrolGraph.nodes.Count);
@@ -278,6 +291,9 @@ public class BossAI : MonoBehaviour
 
     private void ChasePlayer()
     {
+        SetWalkAnimation(true);
+        SetAttackAnimation(false);
+
         agent.isStopped = false;
         agent.speed = chaseSpeed;
         agent.updateRotation = true;
@@ -286,6 +302,9 @@ public class BossAI : MonoBehaviour
 
     private void AttackPlayer()
     {
+        SetWalkAnimation(false);
+        SetAttackAnimation(true);
+
         agent.isStopped = true;
         agent.ResetPath();
         agent.updateRotation = false;
@@ -325,6 +344,26 @@ public class BossAI : MonoBehaviour
     private void ResetShoot()
     {
         canShoot = true;
+    }
+
+    private void SetWalkAnimation(bool isWalking)
+    {
+        if (animator == null)
+        {
+            return;
+        }
+
+        animator.SetBool(walkBoolParam, isWalking);
+    }
+
+    private void SetAttackAnimation(bool attacking)
+    {
+        if (animator == null)
+        {
+            return;
+        }
+
+        animator.SetBool(attackBoolParam, attacking);
     }
 
     private float GetHorizontalDistance(Vector3 from, Vector3 to)

@@ -14,10 +14,10 @@ public class PlayerShield : MonoBehaviour
     public float shieldTimer;
     public TextMeshProUGUI shieldTimerText;
 
-    
-
-  
-   
+    [Header("Tags")]
+    [SerializeField] private string shieldPickupTag = "Shield";
+    [SerializeField] private string damageTagUpper = "Damage";
+    [SerializeField] private string damageTagLower = "";
 
     private Coroutine shieldRoutine;
     private readonly HashSet<GameObject> respawningPickups = new HashSet<GameObject>();
@@ -43,29 +43,42 @@ public class PlayerShield : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        HandleTrigger(other);
-    }
-
-    private void HandleTrigger(Collider other)
-    {
-        if (other == null)
+        if (!shieldActive || ShouldIgnoreCollider(other))
         {
             return;
         }
 
-        if (other.CompareTag("Shield"))
+        if (HasDamageTag(other))
+        {
+            other.gameObject.SetActive(false);
+        }
+    }
+
+    private void HandleTrigger(Collider other)
+    {
+        if (other == null || ShouldIgnoreCollider(other))
+        {
+            return;
+        }
+
+        if (HasTag(other, shieldPickupTag))
         {
             if (respawningPickups.Contains(other.gameObject))
             {
                 return;
             }
 
+            respawningPickups.Add(other.gameObject);
             ActivateShield(activeDuration);
+            other.gameObject.SetActive(false);
             StartCoroutine(RespawnPickup(other.gameObject, respawnDelay));
             return;
         }
 
-       
+        if (shieldActive && HasDamageTag(other))
+        {
+            other.gameObject.SetActive(false);
+        }
     }
 
     public void ActivateShield(float duration)
@@ -96,10 +109,36 @@ public class PlayerShield : MonoBehaviour
 
     private IEnumerator RespawnPickup(GameObject pickup, float delay)
     {
-        respawningPickups.Add(pickup);
-        pickup.SetActive(false);
         yield return new WaitForSeconds(delay);
-        pickup.SetActive(true);
+
+        if (pickup != null)
+        {
+            pickup.SetActive(true);
+        }
+
         respawningPickups.Remove(pickup);
+    }
+
+    private bool HasTag(Collider other, string tagName)
+    {
+        if (other == null || string.IsNullOrEmpty(tagName))
+        {
+            return false;
+        }
+
+        return other.gameObject.tag == tagName;
+    }
+
+    private bool HasDamageTag(Collider other)
+    {
+        return HasTag(other, damageTagUpper)
+            || (!string.IsNullOrEmpty(damageTagLower) && HasTag(other, damageTagLower));
+    }
+
+    private bool ShouldIgnoreCollider(Collider other)
+    {
+        return HasTag(other, "Gems")
+            || HasTag(other, "Checkpoint")
+            || HasTag(other, "HealthPickUp");
     }
 }

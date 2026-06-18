@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: A_NPCDialogueSO 3
   m_EditorClassIdentifier: Assembly-CSharp::NPCDialogueSO
   speaker: 0
-  characterName: Councilman Virel
-  characterIcon: {fileID: 21300000, guid: 06ee2afb4fae8d943813e0ac07509a2e, type: 3}
-  messageLines: "Those creatures aren\u2019t obstacles, they\u2019re consequences.
-    Run now while you still cant\u2026 but they will not stop hunting you."
+  characterName: 'Mr. Ruffles:'
+  characterIcon: {fileID: 21300000, guid: e31f14f0c69b33b46a4374969c06dafe, type: 3}
+  messageLines: They're not! Stay sharp, trust your instincts, and you'll make it
+    through.

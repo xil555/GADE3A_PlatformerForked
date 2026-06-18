@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: A_NPCDialogueSO 2
   m_EditorClassIdentifier: Assembly-CSharp::NPCDialogueSO
   speaker: 1
-  characterName: Traveller
-  characterIcon: {fileID: 21300000, guid: df8cde9d88372b44ebbc2f30f96344fe, type: 3}
-  messageLines: "I don\u2019t have time for riddles. I\u2019ll deal with whatever
-    comes."
+  characterName: Timmy
+  characterIcon: {fileID: 21300000, guid: 37f5b6a4ae18c1c4c99ae0cfb20d500e, type: 3}
+  messageLines: I'll be careful. Those monsters don't look very friendly...

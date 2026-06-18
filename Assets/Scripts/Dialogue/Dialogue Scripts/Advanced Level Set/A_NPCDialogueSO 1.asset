@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: A_NPCDialogueSO 1
   m_EditorClassIdentifier: Assembly-CSharp::NPCDialogueSO
   speaker: 0
-  characterName: Councilman Virel
-  characterIcon: {fileID: 21300000, guid: 06ee2afb4fae8d943813e0ac07509a2e, type: 3}
-  messageLines: "You shouldn't have taken the gemstones\u2026 you really don\u2019t
-    understand what you\u2019ve awakened, do you?"
+  characterName: 'Mr. Ruffles:'
+  characterIcon: {fileID: 21300000, guid: e31f14f0c69b33b46a4374969c06dafe, type: 3}
+  messageLines: Hey, Timmy! This place is crawling with nasty monsters. Grab every
+    gem you can find, but don't let them catch you!

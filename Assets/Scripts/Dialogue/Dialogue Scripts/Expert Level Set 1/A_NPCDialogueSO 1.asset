@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b09e4b15da617dd4a8c8617220a9d6e3, type: 3}
+  m_Name: A_NPCDialogueSO 1
+  m_EditorClassIdentifier: Assembly-CSharp::NPCDialogueSO
+  speaker: 0
+  characterName: Mr. Ruffles
+  characterIcon: {fileID: 21300000, guid: e31f14f0c69b33b46a4374969c06dafe, type: 3}
+  messageLines: Timmy... the biggest nightmare is waiting ahead. You've come this
+    far, but now you have to face what you've been afraid of all along.
